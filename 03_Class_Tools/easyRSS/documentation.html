@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>Documentation de easyRSS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+<h1>Documentation easyRSS v1.1</h1>
+<font color="#990099">J'ai apport&eacute; quelques compl&eacute;ments &agrave; 
+cette page de Philippe RODIER pour indiquer les modifications que j'ai faites.<br>
+Tout ce que j'ai ajout&eacute; est &eacute;crit en violet.<br>
+<div align="center">Alain SICHEL</div></font><br>
+  <h3>Description :</h3>
+  easyRSS est classe qui va vous permettre de cr&eacute;er des fichiers RFD/RSS 
+(Rich Site Summary).<br>
+En effet, il est bien utile de mettre &agrave; disposition de la communaut&eacute; 
+le contenu de son site tel que<br>
+un fil de news, les derni&egrave;res discussions du forum, etc...<br>
+<br>
+Cette classe va pour permettre aussi de parser le contenu des fichiers RDF/RSS 
+des autres<br>
+sites afin de l'afficher sur le votre et ceci de mani&egrave;re tr&egrave;s simple.<br>
+<br>
+<br>
+<h3>Exemples :</h3> 
+Le script exemple1.php vous montre comment cr&eacute;er un fichier RSS.<br>
+Le script exemple2.php vous montre comment parser le fichier RSS de news du site 
+Phpinfo.net.<br>
+<br>
+<br>
+<h3>M&eacute;thodes : </h3>
+<b>$var = new easyRSS();</b>
+<br>
+Constructeur de la classe easyRSS.<br>
+<br>
+<b>$var -&gt; channel($title, $link, $description, $language, $copyright, $webmaster);<br>
+</b>D&eacute;clare les &eacute;l&eacute;ments title, link, description, language, 
+copyright, webMaster de l'&eacute;l&eacute;ment channel :<br>
+<b>$title</b> correspond au nom du channel, doit &ecirc;tre le titre de votre 
+site web. Longueur maximum 100 caract&egrave;res.<br>
+<b>$link</b> correspond &agrave; une URL pointant sur le site web nomm&eacute; 
+dans <b>$title</b>. Longueur maximum 500 caract&egrave;res.<br>
+<b>$description</b> correspond &agrave; une phrase qui d&eacute;crit votre channel. 
+Longueur maximum 500 caract&egrave;res.<br>
+<b>$language</b> correspond &agrave; la langue dans laquelle est &eacute;crit 
+le channel. Consultez la liste des valeurs <a href="http://backend.userland.com/stories/storyReader$16" target="_blank">ici</a>.<br>
+<b>$copyright</b> correspond &agrave; une note de copyright sur le contenu du 
+channel. Longueur maximum 100 caract&egrave;res.<br>
+<b>$webmaste</b>r correspond &agrave; l'adresse email du webMaster pour le channel 
+= la personne &agrave; contacter en cas de probl&egrave;mes techniques. Longueur 
+maximum 100 caract&egrave;res.<br>
+<br>
+<b>$var -&gt; image($title, $url, $link, $width, $height, $description);</b><br>
+D&eacute;clare l'&eacute;l&eacute;ment image avec title, url, link, width, height, 
+description :<br>
+<b>$title</b> correspond &agrave; la description de l'image qui est utilis&eacute;e 
+dans l'attribut ALT du tag HTML &lt;img&gt;. Longueur maximum 100 caract&egrave;res.<br>
+<b>$url</b> correspond &agrave; l'URL d'une image GIF, JPEG or PNG qui repr&eacute;sente 
+le channel. Longueur maximum 500 caract&egrave;res.<br>
+<b>$link</b> correspond &agrave; l'URL du site (lien vers le site). En pratique 
+<b>$title</b> et <b>$link</b> doivent avoir la m&ecirc;me valeur que <b>$title</b> 
+et <b>$link</b> de channel. D'ailleurs le fait de laisser vide <b>$title</b> et 
+<b>$link</b> permet de prendre les valeurs <b>$title</b> et <b>$link</b> d&eacute;finies 
+dans la fonction <b>$var -&gt; channel(..)</b>. Longueur maximum 500 caract&egrave;res.<br>
+<b>$width</b> correspond &agrave; la largeur de l'image en pixels. Le fait de 
+laisser vide <b>$width</b>, assigne la valeur par d&eacute;faut &agrave; 88. Valeur 
+maximum 144.<br>
+<b>$height</b> correspond &agrave; la hauteur de l'image en pixels. Le fait de 
+laisser vide <b>$height</b>, assigne la valeur par d&eacute;faut &agrave; 31. 
+Valeur maximum 400.<br>
+<b>$description</b> correspond au texte qui est plac&eacute; dans l'attribut TITLE 
+du lien form&eacute; autour de l'image dans l'affichage HTML. Longueur maximum 
+500 caract&egrave;res.<br>
+<br>
+<b>$var -&gt; add_item($title, $link);</b> <br>
+Ajoute un &eacute;l&eacute;ment item au channel :<br>
+<b>$title</b> correspond au titre de l'item (titre de la news par ex.). Longueur 
+maximum 100 caract&egrave;res.<br>
+<b>$link</b> correspond &agrave; l'URL (lien vers la news par ex.). Longueur maximum 
+500 caract&egrave;res.<br>
+Vous pouvez ajouter autant d'&eacute;l&eacute;ment item que vous le souhaitez 
+en appelant plusieurs fois <b>$var -&gt; add_item(..)</b>.<br>
+<br>
+<b>$var -&gt; textinput($title, $description, $name, $link);</b><br>
+Ajoute un &eacute;l&eacute;ment textinput au channel ; textinput est optionnel 
+pour le channel. Il contient<b> $title</b>, <b>$description</b>, <b>$name</b>, 
+<b>$link</b> pour affichage d'un formulaire :<br>
+<b>$title</b> correspond au texte du bouton Submit du formualire. Longueur maximum 
+100 caract&egrave;res.<br>
+<b>$description</b> correspond au texte qui annonce le champs input. Longueur 
+maximum 500. caract&egrave;res.<br>
+<b>$name</b> correspond au nom d&eacute;fini dans l'attribut NAME de l'objet HTML 
+&lt;input&gt;. Longueur maximum 20 caract&egrave;res.<br>
+<b>$link</b> correspond &agrave; l'URL du script PHP ou CGI qui traite la requete 
+du formualire. Longueur maximum 500 caract&egrave;res.<br>
+<br>
+<b>$string = $var -&gt; as_string();</b><br>
+Retourne une chaine dans <b>$string</b> contenant l'objet RSS. Le contenu peut 
+&ecirc;tre accessible via des fonctions*.<br>
+<br>
+<b>$var -&gt; save($filename);</b><br>
+Cr&eacute;er l'objet RSS dans le fichier <b>$filename</b>. Le contenu peut &ecirc;tre 
+accessible via des fonctions*.<br>
+<br>
+<b>$var -&gt; parsefile($filename, $maxitem);</b><br>
+Parse un fichier RSS <b>$filename </b>en limitant le nombre d'item &agrave; <b>$maxitem</b>. 
+Si <b>$maxitem</b> est laiss&eacute; vide, la valeur par d&eacute;faut est 1.<br>
+Le contenu est maintenant accessible via des fonctions*.<br>
+<br>
+<b>$bool = $var -&gt; exist_channel();</b><br>
+Renvoi true ou false si l'&eacute;l&eacute;ment channel existe ou pas.<br>
+<br>
+<b>$bool = $var -&gt; exist_image();</b><br>
+Renvoi true ou false si l'&eacute;l&eacute;ment image existe ou pas.<br>
+<br>
+<b>$bool = $var -&gt; exist_items();</b><br>
+Renvoi true ou false si au moins 1 &eacute;l&eacute;ment item existe ou pas.<br>
+<br>
+<b>$bool = $var -&gt; exist_textinput();</b><br>
+Renvoi true ou false si l'&eacute;l&eacute;ment textinput existe ou pas.<br>
+<br>
+<br>
+<br>
+*Fonctions permettant de r&eacute;cup&eacute;rer les valeurs des diff&eacute;rents 
+&eacute;l&eacute;ments :<br>
+<br>
+<b>$string = $var -&gt; get_channel_title();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment title de l'&eacute;l&eacute;ment 
+channel si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_channel_link();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment link de l'&eacute;l&eacute;ment 
+channel si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_channel_description();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment description 
+de l'&eacute;l&eacute;ment channel si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_channel_language();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment language de 
+l'&eacute;l&eacute;ment channel si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_channel_copyright();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment copyright 
+de l'&eacute;l&eacute;ment channel si il est existe.<br>
+<br>
+<b>$string = $var -&gt; get_channel_webmaster();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment webMaster 
+de l'&eacute;l&eacute;ment channel si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_title();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment title de l'&eacute;l&eacute;ment 
+image si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_url();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment url de l'&eacute;l&eacute;ment 
+image si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_link();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment link de l'&eacute;l&eacute;ment 
+image si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_width();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment width de l'&eacute;l&eacute;ment 
+image si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_height();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment height de 
+l'&eacute;l&eacute;ment image si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_image_description();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment description 
+de l'&eacute;l&eacute;ment image si il existe.<br>
+<br>
+<b>$array = $var -&gt; get_items_title();<br>
+</b> Renvoi dans le tableau <b>$array</b> la liste des sous-&eacute;l&eacute;ments 
+title des items index&eacute;e &agrave; partir de 1.<br>
+<br>
+<b>$array = $var -&gt; get_items_link();<br>
+</b> Renvoi dans le tableau <b>$array</b> la liste des sous-&eacute;l&eacute;ments 
+link des items index&eacute;e &agrave; partir de 1.<br>
+<br>
+<b><font color="#990099">$array = $var -&gt; get_items_description();<br>
+</font></b><font color="#990099"> Renvoi dans le tableau <b>$array</b> la liste 
+des sous-&eacute;l&eacute;ments description des items index&eacute;e &agrave; 
+partir de 1.<br>
+<br>
+<b>$array = $var -&gt; get_items_author();<br>
+</b> Renvoi dans le tableau <b>$array</b> la liste des sous-&eacute;l&eacute;ments
+author des items index&eacute;e &agrave; partir de 1.</font><br>
+<br>
+<font color="#990099"><b>$array = $var -&gt; get_items_date();<br>
+</b> Renvoi dans le tableau <b>$array</b> la liste des sous-&eacute;l&eacute;ments
+date des items index&eacute;e &agrave; partir de 1.</font><br>
+<br>
+<b>$value = $var -&gt; get_num_items();<br>
+</b> Renvoi dans <b>$value</b> le nombre d'items du channel.<br>
+<br>
+<b>$string = $var -&gt; get_textinput_title();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment title de l'&eacute;l&eacute;ment 
+textinput si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_textinput_description();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment description 
+de l'&eacute;l&eacute;ment textinput si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_textinput_name();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment name de l'&eacute;l&eacute;ment 
+textinput si il existe.<br>
+<br>
+<b>$string = $var -&gt; get_textinput_link();</b><br>
+Renvoi dans <b>$string</b> le contenu du sous-&eacute;l&eacute;ment link de l'&eacute;l&eacute;ment 
+textinput si il existe.<br>
+<br>
+<br>
+<br>
+<h3>Auteur : </h3>
+Philippe RODIER &lt;webmaster@phpspirit.com&gt; 
+</body>
+</html>

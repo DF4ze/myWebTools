@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Documentation de rss_write v2.0 beta 0.4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+		<h1>Documentation rss_write v2.0 beta 0.4</h1>
+		<h3>
+  Description :</h3>
+		<b>Fil_LE</b>, est un ensemble de deux classes de fonctions php permettant de Lire et d'&Eacute;crire des fils rss. Rss_write est une classe qui permet de cr&eacute;er des fichiers RSS (Rich Site Summary) / RDF / Atom.<br>
+		Elle permet de mettre &agrave; disposition de la communaut&eacute; le contenu de son site tel que un fil de news, les derni&egrave;res discussions du forum, les &eacute;v&eacute;nements d'un agenda,...<br>
+		Cette classe est adapt&eacute;e &agrave; la g&eacute;n&eacute;ration de fils &agrave; partir de donn&eacute;es stock&eacute;es dans des tables MySql. Elle g&eacute;n&eacute;re des fils aux formats rss 2.0, rdf 1.0, Atom 0.3 et Atom 1.0 (ou tout autre format) par un syst&egrave;me de &quot;templates / plugins&quot;. Les templates de flux permettent de l'adapter &agrave; tout format pass&eacute; ou &agrave; venir. D'autre part plusieurs formats peuvent &ecirc;tre g&eacute;n&eacute;r&eacute;s sans avoir &agrave; r&eacute;initialiser toutes les variables n&eacute;cessaires. Le principe mis en &#156;uvre consiste &agrave; stocker les donn&eacute;es n&eacute;cessaires &agrave; la g&eacute;n&eacute;ration des flux dans des tableaux, ces donn&eacute;es sont ensuites utilis&eacute;es pour g&eacute;n&eacute;rer les valeurs correspondants aux balises exig&eacute;es dans le format du flux. (exemple channel['copyright'] servira pour les balises &quot;&lt;copyright&gt;&quot; (format rss 2.0) ou &quot;&lt;dc:rights&gt;&quot; (format rdf 1.0). D'autre part une fois les tableaux renseign&eacute;s, plusieurs flux de formats diff&eacute;rents pourront &ecirc;tre g&eacute;n&eacute;r&eacute;s, sans besoin de r&eacute;initialiser lesdites donn&eacute;es.
+		<p>Certains &eacute;l&eacute;ments de ces tableaux sont obligatoires d'autres facultatifs (entre crochets).<br>
+			rss : encoding, language<br>channel =&gt; title, link, description, [copyright], [webmaster], [pubdate], [url_flux]<br>[image =&gt; [title], url, [link], [decription], [width], [height] ]<br>[item =&gt; title, link, [description], [category], [author], [pubdate], [modified] ]</p>
+		<p>Les donn&eacute;es &quot;obligatoires&quot; correspondent &agrave; un flux minimal, cependant dans certains cas pour que le flux soit valide, des donn&eacute;es consid&eacute;r&eacute;es comme facultatives ci-dessus devront &ecirc;tre obligatoirement renseign&eacute;es (ex pubdate et modified pour les items dans les flux atom 1.0). La classe fournie n'est qu'un outil, les donn&eacute;es utils&eacute;es, leur pertinence et leur format sont des &eacute;l&eacute;ments que seul le webmaster ou le d&eacute;veloppeur mettant en place cette classe est en mesure d'appr&eacute;cier. Par exemple ce sera aussi &agrave; lui d'appr&eacute;cier le nombre de caract&egrave;res des champs &quot;description&quot;. (on trouve des flux fournissant l'int&eacute;gralit&eacute; de l'article et d'autres ne mettant qu'une ligne). les longeurs recommand&eacute;es sont de 100 caract&egrave;res maximun pour les titres, copyright,... et de 500 pour les descriptions.</p>
+		<h3>M&eacute;thodes : </h3>
+		<p><b>&#149; $rss = new rss_write ();</b><br>
+			Constructeur de la classe.</p>
+		<p><b>&#149; $rss -&gt; rss ($encode, $langue);</b><br>
+			D&eacute;fini les deux param&egrave;tres obligatoires de tout flux.<br>
+			<b>$encodage</b> = l'encodage du flux, typiquement ISO-8859-1 ou UTF-8. Il est de la responsabilit&eacute; du pr&eacute;parateur de donn&eacute;es et non de la classe que celles-ci soient conformes &agrave; l'encodage d&eacute;clar&eacute;. (utiliser au besoin la fonction php utf8_encode(string)).<br>
+			<b>$langue</b>, le code de la langue utilis&eacute;e dans le flux (fr = fran&ccedil;ais, en = anglais, liste compl&egrave;te <a href="http://backend.userland.com/stories/storyReader$16" target="_blank">ici</a>...)</p>
+		<p><b>&#149; $rss -&gt; channel ($title, $link, $description);<br>
+			</b>D&eacute;clare les &eacute;l&eacute;ments obligatoires title, link, description de l'&eacute;l&eacute;ment channel :<br>
+			<b>Il est obligatoire de d&eacute;clarer un et un seul &eacute;l&eacute;ment channel.</b></p>
+		<blockquote>
+			<p><b>Obligatoires :<br>
+					
+				- </b><b>$title</b> correspond au nom du channel, doit &ecirc;tre le titre de votre site web.<br>
+				
+				
+			- <b>$link</b> correspond &agrave; une URL pointant sur le site web nomm&eacute; 
+dans <b>$title</b>.<br>
+				
+				
+			- <b>$description</b> correspond &agrave; une phrase qui d&eacute;crit votre channel.</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; channel_element ($balise, $value);<br>
+			</b>D&eacute;clare les &eacute;l&eacute;ments obligatoires ou falcultatifs de l'&eacute;l&eacute;ment channel. Pour les &eacute;l&eacute;ments obligatoires il est possible d'utiliser la fonction channel.<br>
+			exemple $rss -&gt; channel_element ('webmaster', 'the_webmaster@exemple.com');</p>
+		<p>$balise doit prendre l'une des valeurs suivantes :</p>
+		<blockquote>
+			<p>- <b>'tilte', 'link', 'description'</b> (voir ci-dessus)<br>
+				<b>
+					- </b><b>'copyright'</b> correspond &agrave; une note de copyright sur le contenu du channel.<br>
+				
+				
+				- <b>'webmaster'</b> correspond au nom du webmaster<br>
+				
+				- <b>'pubdate'</b> date de g&eacute;n&eacute;ration du flux (voir note au sujet des <a href="#formats_dates">formats de date</a>)<br>
+				- <b>'url_flux'</b>, url du flux lui-m&ecirc;me (n&eacute;cessaire seulement pour les flux atom 1.0).</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; image ($url, [$title], [$link]);</b><br>
+			
+			
+			
+D&eacute;clare l'&eacute;l&eacute;ment image avec title, url, link, width, height, 
+description :<br>
+			
+			L'&eacute;l&eacute;ment image est optionnel. (il n'est pas obligatoire d'en d&eacute;clarer un)</p>
+		<blockquote>
+			<p><b>Obligatoire :</b><br>
+				
+				
+				
+			- <b>$url</b> correspond &agrave; l'URL d'une image GIF, JPEG or PNG qui repr&eacute;sente le channel.<br>
+			</p>
+			<p><b>Optionnels </b>:<br>
+				- <b>$title</b> correspond &agrave; la description de l'image qui est utilis&eacute;e dans l'attribut ALT du tag HTML &lt;img&gt;.<br>
+				- <b>$link</b> correspond &agrave; l'URL du site (lien vers le site).<br>
+				
+				
+			En pratique <b>$title</b> et <b>$link</b> doivent avoir la m&ecirc;me valeur que <b>$title</b> 
+et <b>$link</b> de channel.<br>
+			</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; image_element ($balise, $value);<br>
+			</b>D&eacute;clare les &eacute;l&eacute;ments obligatoires ou falcultatifs de l'&eacute;l&eacute;ment image. Pour les &eacute;l&eacute;ments obligatoires il est possible d'utiliser la fonction image.</p>
+		<p>$balise doit prendre l'une des valeurs suivantes :</p>
+		<blockquote>
+			<p>- <b>'title', 'link', 'url'</b> (voir fonction &quot;image&quot;)<br>
+				<b>- 'width'</b> correspond &agrave; la largeur de l'image en pixels.<br>
+				(Valeur maximum 144 pour le RSS)<br>
+				
+				
+				- <b>'height'</b> correspond &agrave; la hauteur de l'image en pixels.<br>
+				(Valeur maximum 400 pour le RSS)<br>
+				
+				
+				- <b>'description'</b> correspond au texte qui est plac&eacute; dans l'attribut TITLE du lien form&eacute; autour de l'image dans l'affichage HTML.</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; item ($title, $link, [$description]);</b><br>
+			
+			Ajoute un &eacute;l&eacute;ment item au channel :<br>
+			
+			Vous pouvez ajouter autant d'&eacute;l&eacute;ment item que vous le souhaitez en appelant plusieurs fois <b>$rss -&gt; item(..)</b>.</p>
+		<blockquote>
+			<p><b>Obligatoires :<br>
+					
+				$title</b> correspond au titre de l'item (titre de la news par ex.).<br>
+				<b>$link</b> correspond &agrave; l'URL (lien absolu http://... vers la news par ex.).</p>
+			<p><b>Optionnel :<br>
+					$description</b> correspond &agrave; la description de l'item (le d&eacute;but du texte d'une news par exemple).<br>
+			</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; item_element ($balise, $value);<br>
+			</b>D&eacute;clare les &eacute;l&eacute;ments obligatoires ou falcultatifs de l'&eacute;l&eacute;ment item. Pour les &eacute;l&eacute;ments obligatoires il est possible d'utiliser la fonction item.</p>
+		<p>$balise doit prendre l'une des valeurs suivantes :</p>
+		<blockquote>
+			<p>- <b>'tilte', 'link', 'description'</b> (voir fonction pr&eacute;c&eacute;dente)<br>
+				<b>- 'author'</b>, nom et mail &eacute;ventuel) de l'auteur.<br>
+				- <b>'category'</b>, categorie de l'item<br>
+				<b>- 'pubdate'</b>, date de publication de l'article, doit &ecirc;tre g&eacute;n&eacute;r&eacute;e au <a href="#formats_dates">format d&eacute;fini</a>.<br>
+				- <b>'modified'</b>, date de modification de l'article, doit &ecirc;tre g&eacute;n&eacute;r&eacute;e au <a href="#formats_dates">format d&eacute;fini</a>.</p>
+		</blockquote>
+		<p><b>&#149; $rss -&gt; new_item ();</b><br>
+			
+			Passe &agrave; l'item suivant. On peut utiliser l'une ou l'autre des programmations suivantes</p>
+		<p>1. premi&egrave;re m&eacute;thode<br>
+			$rss -&gt; item ('le titre', 'http://www.example.com/article2.html');<br>
+			$rss -&gt; item_element ('category', 'divers et vari&eacute;s');<br>
+			$rss -&gt; item ('autre titre', 'http://www.example.com/article3.html')<br>
+			$rss -&gt; item_element ('category', 'autres');<br>
+		</p>
+		<p>2. deuxi&egrave;me m&eacute;thode<br>
+			$rss -&gt; new_item();<br>
+			$rss -&gt; item_element ('title', 'le titre');<br>
+			$rss -&gt; item_element ('link', 'http://www.example.com/article2.html');<br>
+			$rss -&gt; item_element ('category', 'divers et vari&eacute;s');<br>
+			$rss -&gt; new_item();<br>
+			$rss -&gt; item_element ('title', 'autre titre');<br>
+			$rss -&gt; item_element ('link', 'http://www.example.com/article3.html');<br>
+			$rss -&gt; item_element ('category', 'autres');</p>
+		<p>Les flux produits seront les m&ecirc;mes. (Il est m&ecirc;me possible de mixer les deux m&eacute;thodes, mais pour des questions de coh&eacute;rence de programmation cela n'est pas conseill&eacute;).</p>
+		<p><b>&#149; $string = $rss -&gt; generate ($format, $erreur);</b><br>
+			
+			
+Retourne une chaine dans <b>$string</b> contenant l'objet RSS ou false en cas d'erreur. Le type d'erreur est alors disponible dans la variable $erreur pass&eacute;e par r&eacute;f&eacute;rence.</p>
+		<p>exemple :<br>
+			$res = $rss -&gt; generate('rdf10',$erreur);<br>
+			if ($res) {<br>
+			$res = htmlentities($res);<br>
+			echo str_replace(&quot;\n&quot;,'&lt;br /&gt;', $res);<br>
+			} else {<br>
+			echo $erreur;<br>
+			}</p>
+		<p>Voir note sur les <a href="#formats_flux">formats dispo.</a></p>
+		<p><b>&#149; $rss -&gt; save ($filename, $format, $erreur);</b><br>
+			
+Cr&eacute;er l'objet RSS dans le fichier <b>$filename</b>, au format <b>$format</b>.  Le type d'erreur est alors disponible dans la variable $erreur pass&eacute;e par r&eacute;f&eacute;rence.</p>
+		<p>$res = $rss -&gt; save('monflux.rss', 'rdf10', $erreur);<br>
+			if ($res) {<br>
+			echo 'flux ok'<br>
+			} else {<br>
+			echo $erreur;<br>
+			}</p>
+		<p><a name="formats_flux"></a><b>&#149; les formats de flux<br>
+			</b>pour le moment :<br>
+			rss20, format rss 2.0<br>
+			rdf10, format rss/rdf 1.0<br>
+			atom03, format atom 0.3<br>
+			atom10, format atom 1.0</p>
+		<p><a name="formats_dates"></a><b>&#149; les formats de dates</b><br>
+			dans les flux deux grands formats de date<br>
+			celui de type 1 (<a href="http://www.faqs.org/rfcs/rfc822.html" target="_blank">RFC 822</a>): Wed, 12 Oct 2005 12:45:00 +0200 &eacute;quivalent aussi &agrave; Wed, 12 Oct 2005 10:45:00 GMT (notez la diff&eacute;rence sur les heures)<br>
+			le format de type 2 (<a href="http://www.w3.org/TR/NOTE-datetime" target="_blank">ISO 8601</a>) : 2005-10-12T12:45:00+02:00 &eacute;quivalent &agrave; 2005-10-12T10:45:00Z</p>
+		<p>Pour simplifier la t&acirc;che du programmeur, les <b>dates pass&eacute;es</b> dans les param&egrave;tres des fonctions channel_element('pubdate', $date) et item_element('pubdate', $date) seront au format &quot;AAAA-MM-JJ HH:MM:SS&quot; ou en anglais &quot;YYYY-MM-DD HH:MM:SS&quot;. <b>Elles seront mises au format de type 1 ou de type 2</b> suivant le type de flux demand&eacute;. Ainsi si on veut la date du jour comme &eacute;l&eacute;ment pubdate de channel il suffira d'utiliser<br>
+			$rss -&gt; channel_element ('pubdate', date(&quot;Y-m-d h:i:s&quot;));</p>
+		<p><b>&#149; les plugins</b></p>
+		<p>&agrave; faire....</p>
+		<h3>Auteurs :</h3>
+		
+		Dominique WOJYLAC<br>avec le concours d'Alain SICHEL,
+	</body>
+</html>

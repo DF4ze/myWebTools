@@ -1,0 +1,391 @@
+body
+{
+   width: 790px/*760px*/;
+   margin: auto;
+   margin-top: 20px;
+   margin-bottom: 20px;    
+   background-image: url("images/fond.jpg");
+   background-position: center;
+   background-repeat: norepeat;
+   background-attachment: fixed
+}
+/*Tout les liens de tt les pages auront la meme gueule*/
+/*body a
+{
+  color: #B3B3B3;
+}
+body a:hover
+{
+	background-color: #B3B3B3;
+	color: black;
+}
+*/
+p
+{
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+
+/* L'en-tête */
+
+#en_tete
+{
+   width: 800px;
+   height: 110px;
+   background-image: url("images/i_logo_short.png");
+   background-repeat: no-repeat;
+   margin-bottom: 10px;
+}
+
+
+/* Le menu de gauche*/
+
+#menu
+{
+   float: left;
+   width: 120px;
+}
+
+.element_menu
+{
+   background-color: #626262;
+   background-image: url("images/motif.png");
+   background-repeat: repeat-x;
+   
+   border: 2px solid black;
+   
+   margin-bottom: 20px;
+}
+
+
+/* Quelques effets sur les menus */
+
+
+.element_menu h3
+{    
+   color: #B3B3B3;
+   font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+   text-align: center;
+}
+
+.element_menu ul
+{
+   list-style-image: url("images/puce.png");
+   padding: 0px;
+   padding-left: 20px;
+   margin: 0px;
+   margin-bottom: 5px;
+}
+
+.element_menu a
+{
+   color: #B3B3B3;
+}
+
+.element_menu a:hover
+{
+   background-color: #B3B3B3;
+   color: black;
+}
+
+/*Le menu de droite*/
+.menudroite
+{
+   background-color: #626262;
+   background-image: url("images/motif.png");
+   background-repeat: repeat-x;
+   color: #B3B3B3;
+
+   border: 2px solid black;
+   
+   padding-left: 10px;
+   margin-bottom: 10px;
+   margin-left: 5px;
+   width: 122px;
+}
+
+/*au dessus du corps*/
+.haut
+{
+   margin: 0px;
+
+   padding : 10px;
+   /*
+   margin-right: 0px;
+   margin-bottom: 0px;
+   padding: 10px;
+   padding-right: 5px;
+   */
+   
+   overflow: hidden;
+   
+   color: #B3B3B3;
+  /* background-color: #626262;*/
+   background-image: url("images/haut.jpg");
+   background-repeat: no-repeat/*repeat-y*/;
+   background-position: top;
+   border: no;
+
+}
+.bas
+{
+   margin: 0px;
+   margin-bottom: 10px;
+
+   padding : 10px;
+   
+   overflow: hidden;
+   
+   background-image: url("images/bas.jpg");
+   background-repeat: no-repeat/*repeat-y*/;
+   background-position: top;
+   border: no;
+
+}
+/* Le corps de la page */
+.corps
+{
+  /* margin-left: 50px;*/
+ /*  position:relative;
+   left:-5px;
+   top:-5px;
+*/
+   margin: 0px;
+   /*padding: 10px;*/
+   padding-right: 20px;
+   padding-left: 20px;
+   
+   overflow: hidden;
+   
+   /*color: #B3B3B3;
+   background-color: #626262;*/
+   background-image: url("images/corps.jpg");
+   background-repeat: /*no-repeat*/repeat-y;
+   background-position: top;
+   border: no;
+}
+
+.corps h1
+{
+   color: #B3B3B3;
+   text-align: center;
+   font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+}
+
+.corps h2
+{
+   height: 30px;
+
+   background-image: url("images/titre.png");
+   background-repeat: no-repeat;
+   
+   padding-left: 30px;
+   color: #B3B3B3;
+   text-align: left;
+}
+.corps h3
+{
+   color: #B3B3B3;
+   text-align: center;
+   font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+}
+.rouge
+{
+	color: red;
+}
+
+.aucentre
+{
+	text-align: center;
+}
+
+.adroite
+{
+	float: right;
+	margin-top: 0px;
+	margin-left: 10px;
+	/*text-align: right;*/
+	overflow:hidden;
+}
+
+.cache
+{
+	display:none;
+}
+
+.input 
+{  
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt; 
+	color: #FFFFFF; 
+	text-decoration: none; 
+	background-color: #333333; 
+	border: #000000; 
+	border-top-width: thin; 
+	border-right-width: thin; 
+	border-bottom-width: thin; 
+	border-left-width: thin;
+}
+
+.titre-txt-gauche 
+{
+	float : left ;
+	margin : 0 ; 
+	padding : 0 0 0 10px;
+	color : #000000
+}
+
+.titre-txt-droite 
+{
+	float : right;
+	margin : 0 ; 
+	padding : 0  10px 0 0;
+	font-size: 10pt; 
+	color : #D3D4CC 
+}
+
+.post 
+{
+	height : 25px ; 
+	background : #8D8D8D ; 
+	line-height : 25px ;
+	/*border-top:2px solid black;
+	border-right:2px solid black;
+	border-left:2px solid black;*/
+	
+}
+
+
+.texte 
+{
+	margin : 5px 0 5px 0 ; 
+	padding : 0 10px 0 25px;
+	
+	/*border-bottom:2px solid black;
+	border-right:2px solid black;
+	border-left:2px solid black;*/
+}
+
+.ombre
+{
+   margin-left: 0px;
+   margin-right: 0px;
+   margin-bottom: 10px;
+   padding: 0px;
+   padding-right: 0px;
+   padding-bottom:0px;
+   
+   overflow: visible;
+   
+   color: #B3B3B3;
+  /* background-color: #626262;*/
+   background-image: url("images/ombre.png");
+   /*background-repeat: no-repeat/*repeat-x;*/
+  /* background-position: top;*/
+   border: 0;
+}
+
+.message
+{
+	border : 2px solid black;
+	/*margin-bottom : 10px;*/
+	background-color: #626262;
+
+    position:relative;	
+ 	left:-5px;
+	top:-5px;
+
+}
+
+.fichiers
+{
+	/*background : #8D8D8D ; */	
+	border: 1px solid black;
+   background-image: url("images/flamme.jpg");
+   background-position: top;
+   background-repeat: no-repeat;
+   
+
+	margin: 0;
+	padding: 0;
+	padding-left: 5px;
+	color: black;
+	
+	position:relative;
+	left:-5px;
+	top:-5px;
+
+}
+
+.dossier /* Ma liste aura des puces en forme de dossiers */
+{
+   list-style-image: url("Images/dossier.png");
+}
+.fichier /* Ma liste aura des puces en forme de dossiers */
+{
+   list-style-image: url("Images/puce.png");
+}
+
+
+
+form
+{
+	margin:0px;
+	padding:0px;
+}
+
+/* Le pied de page (qui se trouve tout en bas, en général pour les copyrights) */
+
+#pied_de_page
+{
+   padding: 5px;
+
+   text-align: center;
+
+   color: #B3B3B3;
+   background-color: #626262;
+   background-image: url("images/motif.png");
+   background-repeat: repeat-x;
+   
+   border: 2px solid black;
+}
+
+/*Les formulaires*/
+form {
+	/*width: 500px;*/
+	padding: 10px 20px;
+}
+form p {
+	margin: 1em 0;
+}
+form p.double {
+	/* Empêcher le dépassement des flottants */
+	overflow: hidden;
+	/* Idem pour IE6 */
+	width: 100%;
+}
+form p.double label {
+	float: left;
+	width: 200px;
+	text-align: right;
+	font-weight: bold;
+	cursor: pointer;
+}
+form p.double input,
+form p.double textarea {
+	width: 250px;
+	margin-left: 12px;
+	border: solid 1px green/*midnightblue*/;
+	padding: 2px 4px;
+}
+form p.double textarea {
+	height:30px;}
+
+/*form p.double textarea {
+	padding: 2px 0 0 4px;
+	width: 320px;
+	height: 6em;
+}*/
+form p.simple {
+	margin-left: 270px;
+}

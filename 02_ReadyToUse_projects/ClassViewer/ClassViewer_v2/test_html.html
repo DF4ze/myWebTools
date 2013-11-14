@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Class Test v2</title>
+	
+	<STYLE type="text/css">
+.classe
+{
+	width : 400px;
+	height : 400px;
+	margin : 10px;
+	box-shadow: 6px 6px 6px grey;
+	border-radius: 10px;
+	background-color: orange;
+	
+	margin:auto;
+}
+.classeherit
+{
+	width : auto;
+	border : 1px black outset;	
+	float : left;
+	text-align: center;
+	
+	
+}
+.herit
+{
+	margin-top : 20px;
+	width : auto;
+	border : 1px black outset;	
+	float : left;
+
+}
+
+
+/*
+.nom
+{
+	padding-left : 15px;
+	border : 1px black outset;	
+	border-radius: 10px 10px 0px 0px;
+	background-color: orange;
+}
+.proprietes
+{
+	padding-left : 5px;
+	border : 1px black outset;	
+}
+.fonctions
+{
+	padding-left : 5px;
+	border : 1px black outset;	
+	border-radius: 0px 0px 10px 10px;
+}
+*/
+
+</STYLE>
+
+</head>
+<body>
+
+<div class="classeherit">
+
+		<div class="classe">
+			Classe Principale 1
+		</div class="classe">
+	
+	
+	<div class="herit">
+		<div class="classeherit">
+			<div class="classe">
+				Classe Dérivée 11
+			</div class="classe">
+		</div class="classeherit">
+		
+		<div class="classeherit">
+			<div class="classe">
+				Classe Dérivée 12
+			</div class="classe">
+			
+			<div class="herit">
+				<div class="classeherit">
+					<div class="classe">
+						Classe Dérivée 121
+					</div class="classe">
+				</div class="classeherit">
+				
+				<div class="classeherit">
+					<div class="classe">
+						Classe Dérivée 122
+					</div class="classe">
+				</div class="classeherit">
+			</div class="herit">
+			
+		</div class="classeherit">
+	</div class="herit">
+</div class="classeherit">
+
+
+
+</body>
+</html>

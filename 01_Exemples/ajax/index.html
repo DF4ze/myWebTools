@@ -1,0 +1,70 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>AJAX</title>
+
+<script type="text/javascript">
+function writediv(texte)
+{
+	document.getElementById('pseudobox').innerHTML = texte;
+}
+
+function verifPseudo(pseudo)
+{
+	if(pseudo != '')
+	{
+		if(pseudo.length < 2)
+			writediv('<span style="color:#cc0000"><b>'+pseudo+' :</b> ce pseudo est trop court</span>');
+		else if(pseudo.length > 30)
+			writediv('<span style="color:#cc0000"><b>'+pseudo+' :</b> ce pseudo est trop long</span>');
+		else if(texte = file('verifpseudo.php?pseudo='+pseudo))
+		{
+			if(texte == 1)
+				writediv('<span style="color:#cc0000"><b>'+pseudo+' :</b> ce pseudo est deja pris</span>');
+			else if(texte == 2)
+				writediv('<span style="color:#1A7917"><b>'+pseudo+' :</b> ce pseudo est libre</span>');
+			else
+				writediv(texte);
+		}
+		//else
+		//{
+		//	writediv('plante au if texte = file, pseudo :'+pseudo);
+		//}
+	}
+
+}
+
+function file(fichier)
+{
+	if(window.XMLHttpRequest) // FIREFOX
+	{
+		//writediv("FF");
+		xhr_object = new XMLHttpRequest();
+	}else if(window.ActiveXObject) // IE
+	{
+		//writediv("IE");
+		xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+	}else
+		//writediv("plante dans file");
+		return(false);
+		
+	xhr_object.open("GET", fichier, false);
+	xhr_object.send(null);
+	if(xhr_object.readyState == 4) 
+		return(xhr_object.responseText);
+	else 
+		//writediv("plante dans file 2");
+		return(false);
+}
+</script>
+
+</head>
+<body>
+
+	<form action="">
+		<input type="text" name="pseudo" onKeyUp="verifPseudo(this.value)" />
+		<div id="pseudobox"></div>
+	</form>
+
+</body>
+</html>

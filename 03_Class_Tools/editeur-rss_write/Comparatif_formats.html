@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN">
+<html>
+
+	<head>
+		<title>Comparatif formats rss/rdf/atom</title>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<style type="text/css" media="screen"><!--
+body   { font-size: 12px }
+td   { vertical-align: top; padding: 2px; border-style: solid; border-width: 0px 1px 1px 0px; border-color: black }
+--></style>
+	</head>
+	<body>
+		<p>Tableau comparatif entre les diff&eacute;rents formats de flux xml g&eacute;n&eacute;r&eacute;s &agrave; partir des &eacute;l&eacute;ments standards d&eacute;finis dans la classe rss_write</p>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td><b>type</b></td>
+				<td>&nbsp;</td>
+				<td>max (*)</td>
+				<td><b>rss 0.91</b></td>
+				<td><b>rss 1.0</b></td>
+				<td><b>rss 2.0</b></td>
+				<td><b>atom 0.3</b></td>
+				<td><b>atom 1.0</b></td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>entete</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+					&lt;!DOCTYPE rss PUBLIC &quot;http://my.netscape.com/publish/formats/rss-0.91.dtd&quot;&gt;<br>
+					
+					&lt;rss version=&quot;0.91&quot;&gt;</td>
+				<td>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+					
+					&lt;rdf:RDF xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;<br>
+					
+					xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;<br>
+					
+					xmlns=&quot;http://purl.org/rss/1.0/&quot;&gt;</td>
+				<td>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;<br>
+					
+					&lt;rss version=&quot;2.0&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;</td>
+				<td>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+					
+					
+					&lt;feed version=&quot;0.3&quot; xmlns=&quot;http://purl.org/atom/ns#&quot; xml:lang=&quot;fr&quot;&gt;</td>
+				<td>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+					&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot; xml:lang=&quot;fr&quot;&gt;</td>
+			</tr>
+			<tr>
+				<td><b>channel</b></td>
+				<td>o</td>
+				<td>&nbsp;</td>
+				<td>&lt;channel&gt;</td>
+				<td>&lt;channel rdf:about=&quot;url_site&quot;&gt;</td>
+				<td>&lt;channel&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><b>title</b></td>
+				<td>o</td>
+				<td>100</td>
+				<td>&lt;title&gt;titre du channel&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre du channel&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre du channel&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre du channel&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre du channel&lt;/title&gt;</td>
+			</tr>
+			<tr>
+				<td><b>link</b></td>
+				<td>o</td>
+				<td>500</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;url_site&quot; title=&quot;titre_channel&quot; /&gt;</td>
+				<td>&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;url_site&quot; /&gt;<br>
+					&lt;id&gt;url_site&lt;/id&gt;</td>
+			</tr>
+			<tr>
+				<td><b>description</b></td>
+				<td>o</td>
+				<td>500</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;tagline&gt;description&lt;tagline&gt;</td>
+				<td>&lt;subtitle&gt;description&lt;subtitle&gt;</td>
+			</tr>
+			<tr>
+				<td><b>language</b></td>
+				<td>o</td>
+				<td>5</td>
+				<td>&lt;language&gt;fr&lt;/language&gt;</td>
+				<td>&lt;dc:language&gt;fr&lt;/dc:language&gt;</td>
+				<td>&lt;language&gt;fr&lt;/language&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><b>url_flux</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;link rel=&quot;self&quot; type=&quot;application/atom+xml&quot; href=&quot;url_flux&quot; /&gt;</td>
+			</tr>
+			<tr>
+				<td><b>copyright</b></td>
+				<td>&nbsp;</td>
+				<td>100</td>
+				<td>&lt;copyright&gt;copyright&lt;/copyright&gt;</td>
+				<td>&lt;dc:rights&gt;copyright&lt;/dc:rights&gt;</td>
+				<td>&lt;copyright&gt;copyright&lt;/copyright&gt;</td>
+				<td>&lt;copyright&gt;copyright&lt;/copyright&gt;</td>
+				<td>&lt;rights&gt;copyright&lt;/rights&gt;</td>
+			</tr>
+			<tr>
+				<td><b>webmaster</b></td>
+				<td>&nbsp;</td>
+				<td>100</td>
+				<td>&lt;webMaster&gt;webmaster&lt;/webMaster&gt;</td>
+				<td>&lt;dc:creator&gt;webmaster&lt;/dc:creator&gt;</td>
+				<td>&lt;dc:creator&gt;webmaster&lt;/dc:creator&gt;</td>
+				<td>&lt;author&gt;<br>
+					&lt;name&gt;webmaster&lt;/name&gt;<br>
+					
+					&lt;uri&gt;http://example.com/&lt;/uri&gt;<br>
+					&lt;/author&gt;</td>
+				<td>&lt;author&gt;<br>
+					&lt;name&gt;webmaster&lt;/name&gt;<br>
+					&lt;uri&gt;http://example.com&lt;/uri&gt;<br>
+					
+					&lt;/author&gt;</td>
+			</tr>
+			<tr>
+				<td><b>pubdate</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;pubDate&gt;date au format 1&lt;/pubDate&gt;</td>
+				<td>&lt;dc:date&gt;date au format 2&lt;/dc:date&gt;</td>
+				<td>&lt;pubDate&gt;date au format 1&lt;/pubDate&gt;</td>
+				<td>&lt;modified&gt;date au format 2&lt;/modified&gt;</td>
+				<td>&lt;updated&gt;date au format 2&lt;/updated&gt;</td>
+			</tr>
+			<tr>
+				<td><b>generator</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;generator&gt;le logiciel de g&eacute;n&eacute;ration&lt;/generator&gt;</td>
+				<td>&lt;dc:source&gt;le logiciel de g&eacute;n&eacute;ration&lt;/dc:source&gt;</td>
+				<td>&lt;generator&gt;le logiciel de g&eacute;n&eacute;ration&lt;/generator&gt;</td>
+				<td>&lt;generator&gt;le logiciel de g&eacute;n&eacute;ration&lt;/generator&gt;</td>
+				<td>&lt;generator&gt;le logiciel de g&eacute;n&eacute;ration&lt;/generator&gt;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;image rdf:resource=&quot;image_url'&quot; /&gt;&lt;items&gt;<br>
+					&lt;rdf:Seq&gt;<br>
+					&lt;rdf:li rdf:resource=&quot;url_item&quot; /&gt;<br>
+					....<br>
+					&lt;/rdf:Seq&gt;<br>&lt;/items&gt;<br>
+					&lt;/channel&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#696969" height="5">
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>image</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;image&gt;</td>
+				<td>&lt;image rdf:about=&quot;url_image&quot;&gt;</td>
+				<td>&lt;image&gt;</td>
+				<td>&nbsp;</td>
+				<td>&lt;logo&gt;url_image&lt;/logo&gt;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>title</b></td>
+				<td>o</td>
+				<td>100</td>
+				<td>&lt;title&gt;titre image&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre image&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre image&lt;/title&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>url</b></td>
+				<td>o</td>
+				<td>500</td>
+				<td>&lt;url&gt;url_image&lt;/url&gt;</td>
+				<td>&lt;url&gt;url_image&lt;/url&gt;</td>
+				<td>&lt;url&gt;url_image&lt;/url&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>link</b></td>
+				<td>o</td>
+				<td>500</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_site&lt;/link&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>description</b></td>
+				<td>&nbsp;</td>
+				<td>500</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;dc:description&gt;description&lt;/dc:description&gt;</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>width</b></td>
+				<td>&nbsp;</td>
+				<td>144</td>
+				<td>&lt;width&gt;largeur&lt;/width&gt; </td>
+				<td rowspan="2">&lt;dc:format&gt;width=&quot;largeur&quot; height=&quot;hauteur&quot;&lt;/dc:format&gt;</td>
+				<td>&lt;width&gt;largeur&lt;/width&gt; </td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td><b>height</b></td>
+				<td>&nbsp;</td>
+				<td>400</td>
+				<td>&lt;height&gt;hauteur&lt;/height&gt;</td>
+				<td>&lt;height&gt;hauteur&lt;/height&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#dcdcdc">
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;/image&gt;</td>
+				<td>&lt;/image&gt;</td>
+				<td>&lt;/image&gt;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr bgcolor="#696969" height="5">
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+			</tr>
+			<tr>
+				<td><b>item</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;item&gt;</td>
+				<td>&lt;item rdf:about=&quot;url_item&quot;&gt;</td>
+				<td>&lt;item&gt;</td>
+				<td>&lt;entry&gt;</td>
+				<td>&lt;entry xml:lang=&quot;fr&quot;&gt;</td>
+			</tr>
+			<tr>
+				<td><b>title</b></td>
+				<td>o</td>
+				<td>100</td>
+				<td>&lt;title&gt;titre item&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre item&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre item&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre item&lt;/title&gt;</td>
+				<td>&lt;title&gt;titre item&lt;/title&gt;</td>
+			</tr>
+			<tr>
+				<td><b>link</b></td>
+				<td>o</td>
+				<td>500</td>
+				<td>&lt;link&gt;url_item&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_item&lt;/link&gt;</td>
+				<td>&lt;link&gt;url_item&lt;/link&gt;</td>
+				<td>&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;url_item&quot; /&gt;<br>
+					
+					&lt;id&gt;url_item&lt;/id&gt;</td>
+				<td>&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;url_item&quot; /&gt;<br>
+					&lt;id&gt;url_item&lt;/id&gt;</td>
+			</tr>
+			<tr>
+				<td><b>description</b></td>
+				<td>&nbsp;</td>
+				<td>500</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;description&gt;description&lt;/description&gt;</td>
+				<td>&lt;summary type=&quot;html&quot;&gt;description&lt;/summary&gt;</td>
+				<td>&lt;summary type=&quot;html&quot;&gt;description&lt;/summary&gt;</td>
+			</tr>
+			<tr>
+				<td><b>pubdate</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;pubDate&gt;date au format 1&lt;/pubDate&gt;</td>
+				<td>&lt;dc:date&gt;date au format 2&lt;/dc:date&gt;</td>
+				<td>&lt;pubDate&gt;date au format 1&lt;/pubDate&gt;</td>
+				<td>&lt;issued&gt;date au format 2&lt;/issued&gt;</td>
+				<td>&lt;published&gt;date au format 2&lt;/published&gt;</td>
+			</tr>
+			<tr>
+				<td><b>modified</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;modified&gt;date au format 2&lt;/modified&gt;</td>
+				<td>&lt;updated&gt;date au format 2&lt;/updated&gt;</td>
+			</tr>
+			<tr>
+				<td><b>category</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;dc:subject&gt;categorie&lt;/dc:subject&gt;</td>
+				<td>&lt;category&gt;categorie&lt;/category&gt;</td>
+				<td>&nbsp;</td>
+				<td>&lt;category label=&quot;categorie&quot;/&gt;</td>
+			</tr>
+			<tr>
+				<td><b>author</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;author&gt;auteur&lt;/author&gt;</td>
+				<td>&lt;dc:creator&gt;auteur&lt;/dc:creator&gt;</td>
+				<td>&lt;dc:creator&gt;auteur&lt;/dc:creator&gt;</td>
+				<td>&lt;author&gt;<br>
+					&lt;name&gt;auteur&lt;/name&gt;<br>
+					&lt;/author&gt;</td>
+				<td>&lt;author&gt;<br>
+					&lt;name&gt;auteur&lt;/name&gt;<br>
+					&lt;/author&gt;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;/item&gt;</td>
+				<td>&lt;/item&gt;</td>
+				<td>&lt;/item&gt;</td>
+				<td>&lt;/entry&gt;</td>
+				<td>&lt;/entry&gt;</td>
+			</tr>
+			<tr bgcolor="#696969" height="5">
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+				<td height="5"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&lt;/channel&gt;<br>
+					&lt;/rss&gt;</td>
+				<td>&lt;/rdf:RDF&gt;</td>
+				<td>&lt;/channel&gt;<br>
+					&lt;/rss&gt;</td>
+				<td>&lt;/feed&gt;</td>
+				<td>&lt;/feed&gt;</td>
+			</tr>
+		</table>
+		<p><b>Format des dates :<br>
+			</b>date au format 1 = norme <a href="http://www.faqs.org/rfcs/rfc822.html" target="_blank">RFC 822</a> : exemple : Sun, 26 Jun 2005 12:16:26 +0200 ou &eacute;quivalent Sun, 26 Jun 2005 10:16:26 GMT<br>
+			date au format 2 = norme <a href="http://www.w3.org/TR/NOTE-datetime" target="_blank">ISO 8601</a> : exemple : 2005-07-26T12:16:26+02:00 ou &eacute;quivalent 2005-07-26T10:16:26Z<br>
+			C'est la premi&egrave;re forme qui est g&eacute;n&eacute;r&eacute;e par rss_write.</p>
+		<p>(*) max = nombre maximun de caract&egrave;res admis (cas rss 0.91 et 2.0 seulement)</p>
+	</body>
+</html>

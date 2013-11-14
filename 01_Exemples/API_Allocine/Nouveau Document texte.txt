@@ -1,0 +1,2 @@
+_http://api.allocine.fr/rest/v3/search?partner=YW5kcm9pZC12M3M&filter=movie,theater,person&count=5&page=1&q=avatar&format=json
+  _http://api.allocine.fr/rest/v3/movie?partner=YW5kcm9pZC12M3M&code=61282&format=json&filter=movie&striptags=synopsis,synopsisshort
